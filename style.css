@@ -1,0 +1,154 @@
+:root {
+  --bg: #e9f1f3;
+  --ink: #12263a;
+  --muted: #5b6b79;
+  --card: #ffffff;
+  --line: #c9d8de;
+  --accent: #f0a22e;
+  --blue: #1d5c7a;
+  --blue-light: #e1eef3;
+  --error: #b3261e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+body {
+  font-family: "Source Sans 3", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  padding: 0 20px 40px;
+}
+
+.top, #app, .message, footer { max-width: 900px; margin-left: auto; margin-right: auto; }
+
+.top { padding: 40px 0 22px; }
+
+h1 {
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.sub { color: var(--muted); margin-top: 6px; }
+
+input, select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  width: 100%;
+}
+input:focus, select:focus, button:focus-visible, .row:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--blue);
+}
+
+/* converter */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.row-fields { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+.field { flex: 1 1 150px; display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 0.95rem; }
+.field span { color: var(--muted); }
+
+.swap {
+  flex: 0 0 auto;
+  width: 46px; height: 46px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 1.3rem;
+  color: var(--blue);
+  cursor: pointer;
+}
+.swap:hover { background: var(--blue-light); }
+
+.result { margin-top: 22px; }
+.result .small { color: var(--muted); font-size: 1rem; }
+.result .big {
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  word-break: break-word;
+}
+.result .rate { color: var(--muted); margin-top: 4px; }
+.updated { margin-top: 10px; font-size: 0.85rem; color: var(--muted); }
+
+/* list */
+.controls { display: flex; gap: 12px; flex-wrap: wrap; }
+.controls input { flex: 1; min-width: 220px; width: auto; }
+.controls select { width: auto; }
+.count { margin: 12px 0; color: var(--muted); font-size: 0.95rem; }
+
+.list { list-style: none; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--card); }
+.row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+.row:last-child { border-bottom: none; }
+.row:hover { background: #f3f8f9; }
+.row.selected { background: var(--blue-light); }
+.row .code { font-weight: 700; }
+.row .name { color: var(--muted); font-size: 0.95rem; }
+.row .value { font-weight: 600; text-align: right; }
+
+.empty { padding: 30px 16px; text-align: center; color: var(--muted); }
+
+/* loading / error */
+.message { text-align: center; padding: 50px 0; }
+.message:empty { display: none; }
+.message h2 { font-family: "Bricolage Grotesque", Arial, sans-serif; font-size: 1.4rem; margin-bottom: 6px; }
+.message p { color: var(--muted); }
+.message.error h2 { color: var(--error); }
+.message .detail { font-size: 0.85rem; margin-top: 8px; }
+.message button {
+  margin-top: 18px;
+  padding: 11px 24px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.message button:hover { background: #154861; }
+
+.spinner {
+  width: 42px; height: 42px;
+  margin: 0 auto 16px;
+  border: 5px solid var(--line);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+footer { margin-top: 36px; color: var(--muted); font-size: 0.85rem; }
+footer a { color: var(--blue); }
+
+@media (max-width: 560px) {
+  h1 { font-size: 2rem; }
+  .result .big { font-size: 1.7rem; }
+  .row { grid-template-columns: 52px 1fr; }
+  .row .value { grid-column: 2; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } }

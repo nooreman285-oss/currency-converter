@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <h1>Currency Converter</h1>
+    <p class="sub">Live exchange rates. Convert any amount and compare all currencies in one list.</p>
+  </header>
+
+  <section id="message" class="message" aria-live="polite"></section>
+
+  <div id="app" hidden>
+
+    <!-- converter -->
+    <section class="panel converter">
+      <div class="row-fields">
+        <label class="field">
+          <span>Amount</span>
+          <input type="number" id="amount" value="1" min="0" step="any" inputmode="decimal">
+        </label>
+        <label class="field">
+          <span>From</span>
+          <select id="from"></select>
+        </label>
+        <button id="swap" type="button" class="swap" aria-label="Swap currencies" title="Swap">&#8644;</button>
+        <label class="field">
+          <span>To</span>
+          <select id="to"></select>
+        </label>
+      </div>
+
+      <div id="result" class="result" aria-live="polite"></div>
+      <p id="updated" class="updated"></p>
+    </section>
+
+    <!-- list of all currencies -->
+    <section class="list-area">
+      <div class="controls">
+        <input type="text" id="search" placeholder="Search currency (e.g. riyal, USD, euro)" autocomplete="off">
+        <select id="filter">
+          <option value="all">All currencies</option>
+          <option value="popular">Popular only</option>
+        </select>
+      </div>
+      <p id="count" class="count"></p>
+      <ul id="list" class="list"></ul>
+    </section>
+
+  </div>
+
+  <footer>
+    Rates from <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a>.
+    Rates are for information only and may differ from bank or open-market rates.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
